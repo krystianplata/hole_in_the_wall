@@ -38,6 +38,5 @@ public class GazeClick : MonoBehaviour
     {
         // placeholder action
         Debug.Log("Button has been clicked");
-        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
     }
 }
