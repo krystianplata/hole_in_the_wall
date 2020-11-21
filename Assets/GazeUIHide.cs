@@ -25,27 +25,18 @@ using UnityEngine;
 /// </summary>
 public class GazeUIHide : MonoBehaviour
 {
-    /// <summary>
-    /// The material to use when this object is inactive (not being gazed at).
-    /// </summary>
+    // TODO:
     public Material InactiveMaterial;
-
-    /// <summary>
-    /// The material to use when this object is active (gazed at).
-    /// </summary>
     public Material GazedAtMaterial;
 
     public float gazeTime = .5f;
     private float timer;
     private bool gazedAt;
-    private GameObject _UI;
+    private GameObject UI;
 
-    /// <summary>
-    /// Start is called before the first frame update.
-    /// </summary>
     public void Start()
     {
-        _UI = GameObject.Find("UI_Plane");
+        UI = GameObject.Find("UI_Plane");
     }
 
     public void Update()
@@ -62,53 +53,18 @@ public class GazeUIHide : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Teleports this instance randomly when triggered by a pointer click.
-    /// </summary>
-    //public void TeleportRandomly()
-    //{
-        // Picks a random sibling, moves them somewhere random, activates them,
-        // deactivates ourself.
-        // int sibIdx = transform.GetSiblingIndex();
-        // int numSibs = transform.parent.childCount;
-        // sibIdx = (sibIdx + Random.Range(1, numSibs)) % numSibs;
-        // GameObject randomSib = transform.parent.GetChild(sibIdx).gameObject;
-        // 
-        // // New object's location.
-        // float angle = Random.Range(-90, 90);
-        // float distance = Random.Range(_minObjectDistance, _maxObjectDistance);
-        // float height = Random.Range(_minObjectHeight, _maxObjectHeight);
-        // Vector3 newPos = new Vector3(Mathf.Cos(angle) * distance, height,
-        //                              Mathf.Sin(angle) * distance);
-        // randomSib.transform.localPosition = newPos;
-        // 
-        // randomSib.SetActive(true);
-        // gameObject.SetActive(false);
-        // SetMaterial(false);
-    //}
-
-    /// <summary>
-    /// This method is called by the Main Camera when it starts gazing at this GameObject.
-    /// </summary>
     public void OnPointerEnter()
     {
         gazedAt = true;
     }
 
-    /// <summary>
-    /// This method is called by the Main Camera when it stops gazing at this GameObject.
-    /// </summary>
     public void OnPointerExit()
     { 
         gazedAt = false;
     }
 
-    /// <summary>
-    /// This method is called by the Main Camera when it is gazing at this GameObject and the screen
-    /// is touched.
-    /// </summary>
     public void OnPointerClick()
     {
-        _UI.transform.position = new Vector3(100, 100, 100);
+        UI.transform.position = new Vector3(100, 100, 100);
     }
 }
