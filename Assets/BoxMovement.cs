@@ -3,6 +3,7 @@
 public class BoxMovement : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject UI;
 
     public int obstacleSpeed;
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class BoxMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (UI.activeSelf) return;
         Vector3 dir = new Vector3(-1,0,0) * obstacleSpeed * Time.deltaTime;
         transform.Translate(dir.x, dir.y, dir.z);
     }
@@ -21,7 +23,9 @@ public class BoxMovement : MonoBehaviour
     {
         if(collision.gameObject.name == Player.name)
         {
-            transform.Translate(4, 0, 0);
+            transform.Translate(10, 0, 0);
+            // Revert to UI state
+            UI.SetActive(true);
         }
     }
 }

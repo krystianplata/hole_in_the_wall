@@ -30,12 +30,12 @@ public class GazeUIHide : MonoBehaviour
     private float timer;
     private bool gazedAt;
 
-    private GameObject UI;
+    public GameObject UI;
     private TMP_Text button;
 
     public void Start()
     {
-        UI = GameObject.Find("ui_plane");
+        // UI = GameObject.Find("ui_plane");
         button = gameObject.GetComponent<TMP_Text>();
 
     }
@@ -47,6 +47,7 @@ public class GazeUIHide : MonoBehaviour
         if (gazedAt)
         {
             timer += Time.deltaTime;
+            // ??
             if (UI.transform.position.z <= 5.0f)
             {
                 Vector3 old_pos = button.transform.position;
@@ -81,6 +82,7 @@ public class GazeUIHide : MonoBehaviour
     public void OnPointerClick()
     {
         // placeholder hack for moving outside of the scene
-        UI.transform.position = new Vector3(100, 100, 100);
+        // UI.transform.position = new Vector3(100, 100, 100);
+        UI.SetActive(false);
     }
 }
