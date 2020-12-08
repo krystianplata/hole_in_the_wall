@@ -17,6 +17,7 @@
 //-----------------------------------------------------------------------
 
 using System.Collections;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 /// <summary>
@@ -33,6 +34,10 @@ public class ObjectController : MonoBehaviour
     /// The material to use when this object is active (gazed at).
     /// </summary>
     public Material GazedAtMaterial;
+       
+    public float gazeTime = .5f;
+    private float timer;
+    private bool gazedAt;
 
     // The objects are about 1 meter in radius, so the min/max target distance are
     // set so that the objects are always within the room (which is about 5 meters
@@ -53,6 +58,20 @@ public class ObjectController : MonoBehaviour
         _startingPosition = transform.localPosition;
         _myRenderer = GetComponent<Renderer>();
         SetMaterial(false);
+    }
+
+    void Update()
+    {
+        if (gazedAt)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= gazeTime)
+            {
+                OnPointerClick();
+                timer = 0f;
+            }
+        }
     }
 
     /// <summary>
@@ -86,6 +105,7 @@ public class ObjectController : MonoBehaviour
     public void OnPointerEnter()
     {
         SetMaterial(true);
+        gazedAt = true;
     }
 
     /// <summary>
@@ -94,6 +114,7 @@ public class ObjectController : MonoBehaviour
     public void OnPointerExit()
     {
         SetMaterial(false);
+        gazedAt = false;
     }
 
     /// <summary>
