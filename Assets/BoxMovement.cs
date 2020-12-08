@@ -13,7 +13,7 @@ public class BoxMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = new Vector3(0,0,1) * obstacleSpeed * Time.deltaTime;
+        Vector3 dir = new Vector3(-1,0,0) * obstacleSpeed * Time.deltaTime;
         transform.Translate(dir.x, dir.y, dir.z);
     }
 
@@ -21,7 +21,7 @@ public class BoxMovement : MonoBehaviour
     {
         if(collision.gameObject.name == Player.name)
         {
-            transform.Translate(0, 0, 4);
+            transform.Translate(4, 0, 0);
         }
     }
 }
