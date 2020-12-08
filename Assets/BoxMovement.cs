@@ -21,7 +21,7 @@ public class BoxMovement : MonoBehaviour
     {
         if(collision.gameObject.name == Player.name)
         {
-            transform.Translate(3, 2, 4);
+            transform.Translate(0, 0, 4);
         }
     }
 }
