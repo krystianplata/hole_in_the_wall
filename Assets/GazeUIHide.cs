@@ -47,24 +47,7 @@ public class GazeUIHide : MonoBehaviour
         if (gazedAt)
         {
             timer += Time.deltaTime;
-            // ??
-            if (UI.transform.position.z <= 5.0f)
-            {
-                Vector3 old_pos = button.transform.position;
-                UI.transform.position += new Vector3(0, 0, 0.05f);
-                button.transform.position = old_pos;
-            }
-            else 
-            {
-                OnPointerClick();
-            }
-
-        }
-        else if (UI.transform.position.z >= 2.1f)
-        {
-            Vector3 old_pos = button.transform.position;
-            UI.transform.position += new Vector3(0, 0, -.1f);
-            button.transform.position = old_pos;
+            OnPointerClick();
         }
     }
 
@@ -84,5 +67,6 @@ public class GazeUIHide : MonoBehaviour
         // placeholder hack for moving outside of the scene
         // UI.transform.position = new Vector3(100, 100, 100);
         UI.SetActive(false);
+        OnPointerExit();
     }
 }
