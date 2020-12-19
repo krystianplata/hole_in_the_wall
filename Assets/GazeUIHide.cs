@@ -16,29 +16,20 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
-/// <summary>
-/// Controls target objects behaviour.
-/// </summary>
 public class GazeUIHide : MonoBehaviour
 {
     public float gazeTime = 3.0f;
-    private float timer;
+    private float timer = .0f;
     private bool gazedAt;
 
     public GameObject UI;
-    private TMP_Text button;
-
-    public void Start()
-    {
-        // UI = GameObject.Find("ui_plane");
-        button = gameObject.GetComponent<TMP_Text>();
-
-    }
+    public TMP_Text button;
 
     public void Update()
     {
@@ -47,6 +38,13 @@ public class GazeUIHide : MonoBehaviour
         if (gazedAt)
         {
             timer += Time.deltaTime;
+            int start_counter = (int)(gazeTime - timer + 1);
+            button.SetText(start_counter.ToString());
+        }
+
+        if (timer >= gazeTime)
+        {
+            timer = .0f;
             OnPointerClick();
         }
     }
@@ -54,18 +52,16 @@ public class GazeUIHide : MonoBehaviour
     public void OnPointerEnter()
     {
         gazedAt = true;
-
     }
 
     public void OnPointerExit()
     { 
         gazedAt = false;
+        button.SetText("Start");
     }
 
     public void OnPointerClick()
     {
-        // placeholder hack for moving outside of the scene
-        // UI.transform.position = new Vector3(100, 100, 100);
         UI.SetActive(false);
         OnPointerExit();
     }
