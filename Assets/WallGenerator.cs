@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class WallGenerator : MonoBehaviour
 {
-
-    // Public: script for collisions & material
-
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
     public GameObject UI;
@@ -31,11 +28,11 @@ public class WallGenerator : MonoBehaviour
 
     void Update()
     {
-        if (!activeWall && !UI.activeSelf)
+        if (activeWall == null && !UI.activeSelf)
         {
             SpawnRandomWall();
         }
-        else if (activeWall && !activeWall.activeSelf)
+        else if (activeWall != null && !activeWall.activeSelf)
         {
             if (activeScript.HasCollided())
             {
@@ -54,13 +51,19 @@ public class WallGenerator : MonoBehaviour
     {
         activeWall = Instantiate(walls[0]) as GameObject;
 
+        activeWall.AddComponent<MeshCollider>();
         activeScript = activeWall.AddComponent<BoxMovement>();
         activeScript.Player = Player;
         activeScript.ObstacleSpeed = ObstacleSpeed;
 
-        activeWall.AddComponent<MeshCollider>();
-
         activeWall.transform.position = SpawnPoint;
         activeWall.transform.eulerAngles = SpawnRotation;
+    }
+
+    void ClearWall()
+    {
+        Destroy(activeWall);
+        activeWall = null;
+        activeScript = null;
     }
 }

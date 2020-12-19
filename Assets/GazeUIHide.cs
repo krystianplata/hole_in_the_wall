@@ -25,11 +25,11 @@ using TMPro;
 public class GazeUIHide : MonoBehaviour
 {
     public float gazeTime = 3.0f;
-    private float timer = .0f;
-    private bool gazedAt;
-
     public GameObject UI;
     public TMP_Text button;
+
+    private float timer = .0f;
+    private bool gazedAt;
 
     public void Update()
     {
@@ -58,10 +58,12 @@ public class GazeUIHide : MonoBehaviour
     { 
         gazedAt = false;
         button.SetText("Start");
+        timer = .0f;
     }
 
     public void OnPointerClick()
     {
         UI.SetActive(false);
+        OnPointerExit();
     }
 }

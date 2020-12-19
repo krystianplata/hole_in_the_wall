@@ -20,7 +20,7 @@ public class BoxMovement : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision)
-    {
+    { 
         if(collision.gameObject.name == Player.name)
         { 
             gameObject.SetActive(false);
