@@ -7,12 +7,16 @@ public class WallGenerator : MonoBehaviour
 
     // Public: script for collisions & material
 
-    public Vector3 spawnPoint;
-    public Vector3 spawnRotation = new Vector3(-90.0f, 0.0f, -90.0f);
+    public Vector3 SpawnPoint;
+    public Vector3 SpawnRotation;
     public GameObject UI;
+    public GameObject Player;
+    public int ObstacleSpeed;
 
     private List<GameObject> walls = new List<GameObject>();
+
     private GameObject activeWall = null;
+    private BoxMovement activeScript = null;
 
     void Start()
     {
@@ -31,18 +35,32 @@ public class WallGenerator : MonoBehaviour
         {
             SpawnRandomWall();
         }
+        else if (activeWall && !activeWall.activeSelf)
+        {
+            if (activeScript.HasCollided())
+            {
+                UI.SetActive(true);
+                activeWall = null;
+            }
+            else 
+            {
+                activeWall = null;
+                SpawnRandomWall();
+            }
+        }
     }
 
     void SpawnRandomWall()
     {
         activeWall = Instantiate(walls[0]) as GameObject;
-        activeWall.transform.position = spawnPoint;
-        activeWall.transform.eulerAngles = spawnRotation;
-    }
 
-    void ClearUsedWall()
-    {
-        // Add a delete for the game object
-        activeWall = null;
+        activeScript = activeWall.AddComponent<BoxMovement>();
+        activeScript.Player = Player;
+        activeScript.ObstacleSpeed = ObstacleSpeed;
+
+        activeWall.AddComponent<MeshCollider>();
+
+        activeWall.transform.position = SpawnPoint;
+        activeWall.transform.eulerAngles = SpawnRotation;
     }
 }

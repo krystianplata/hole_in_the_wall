@@ -63,6 +63,5 @@ public class GazeUIHide : MonoBehaviour
     public void OnPointerClick()
     {
         UI.SetActive(false);
-        OnPointerExit();
     }
 }

@@ -1688,8 +1688,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cff774a4fbfb0448b776f2d061b944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {x: 1, y: 1.5, z: 10}
+  SpawnPoint: {x: 1, y: 1.5, z: 10}
+  SpawnRotation: {x: -90, y: 0, z: -90}
   UI: {fileID: 2085037329}
+  Player: {fileID: 907292807}
+  ObstacleSpeed: 1
 --- !u!1 &2147265261
 GameObject:
   m_ObjectHideFlags: 0

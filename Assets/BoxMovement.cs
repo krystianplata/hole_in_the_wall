@@ -2,30 +2,34 @@
 
 public class BoxMovement : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject UI;
+    public GameObject Player = null;
+    public int ObstacleSpeed = 1;
 
-    public int obstacleSpeed;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    private bool collisionDetected = false;
 
-    // Update is called once per frame
     void Update()
     {
-        if (UI.activeSelf) return;
-        Vector3 dir = new Vector3(-1,0,0) * obstacleSpeed * Time.deltaTime;
-        transform.Translate(dir.x, dir.y, dir.z);
+        if (gameObject.transform.position.z >= -1)
+        {
+            Vector3 dir = new Vector3(-1, 0, 0) * ObstacleSpeed * Time.deltaTime;
+            transform.Translate(dir.x, dir.y, dir.z);
+        }
+        else {
+            gameObject.SetActive(false);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == Player.name)
-        {
-            transform.Translate(10, 0, 0);
-            // Revert to UI state
-            UI.SetActive(true);
+        { 
+            gameObject.SetActive(false);
+            collisionDetected = true;
         }
+    }
+
+    public bool HasCollided()
+    { 
+        return collisionDetected;
     }
 }
