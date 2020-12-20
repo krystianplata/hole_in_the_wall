@@ -18,8 +18,9 @@
 
 using System;
 using System.Collections;
-using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 
 public class GazeUIHide : MonoBehaviour
@@ -55,7 +56,7 @@ public class GazeUIHide : MonoBehaviour
     }
 
     public void OnPointerExit()
-    { 
+    {
         gazedAt = false;
         button.SetText("Start");
         timer = .0f;

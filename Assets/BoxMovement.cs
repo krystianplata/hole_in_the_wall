@@ -3,13 +3,13 @@
 public class BoxMovement : MonoBehaviour
 {
     public GameObject Player = null;
-    public int ObstacleSpeed = 1;
+    public float ObstacleSpeed = 1.0f;
 
     private bool collisionDetected = false;
 
     void Update()
     {
-        if (gameObject.transform.position.z >= -1)
+        if (gameObject.transform.position.z >= -0.5)
         {
             Vector3 dir = new Vector3(-1, 0, 0) * ObstacleSpeed * Time.deltaTime;
             transform.Translate(dir.x, dir.y, dir.z);

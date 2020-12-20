@@ -8,7 +8,8 @@ public class WallGenerator : MonoBehaviour
     public Vector3 SpawnRotation;
     public GameObject UI;
     public GameObject Player;
-    public int ObstacleSpeed;
+    public float ObstacleSpeed;
+    public float ObstacleSpeedGain;
 
     private List<GameObject> walls = new List<GameObject>();
 
@@ -49,7 +50,7 @@ public class WallGenerator : MonoBehaviour
 
     void SpawnRandomWall()
     {
-        activeWall = Instantiate(walls[0]) as GameObject;
+        activeWall = Instantiate(walls[Random.Range(0, walls.Count)]) as GameObject;
 
         activeWall.AddComponent<MeshCollider>();
         activeScript = activeWall.AddComponent<BoxMovement>();
@@ -58,6 +59,8 @@ public class WallGenerator : MonoBehaviour
 
         activeWall.transform.position = SpawnPoint;
         activeWall.transform.eulerAngles = SpawnRotation;
+
+        ObstacleSpeed += ObstacleSpeed * ObstacleSpeedGain;
     }
 
     void ClearWall()
