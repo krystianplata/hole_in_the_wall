@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5038eabbf48c33944be22a362e83b8d3
+guid: e09360409041e90478762b439acc95cc
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Smash Wall
+  fontName: Bad Mofo
   fontNames:
-  - Smash Wall
+  - Bad Mofo
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
