@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public int ySentitivity;
     public GameObject ui_plane;
     private Rigidbody rigidbody;
-    private bool isMoving = false;
+    private bool isMoving = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +20,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ui_plane.activeSelf)
-        {
-            return;
-        }
+        //if (ui_plane.activeSelf)
+        //{
+        //    return;
+        //}
 
         if (isMoving)
         {

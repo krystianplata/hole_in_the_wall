@@ -11,7 +11,7 @@ public class BoxMovement : MonoBehaviour
     {
         if (gameObject.transform.position.z >= -0.5)
         {
-            Vector3 dir = new Vector3(-1, 0, 0) * ObstacleSpeed * Time.deltaTime;
+            Vector3 dir = new Vector3(0, 0, -1) * ObstacleSpeed * Time.deltaTime;
             transform.Translate(dir.x, dir.y, dir.z);
         }
         else {
