@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WallGenerator : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class WallGenerator : MonoBehaviour
     public Vector3 SpawnRotation;
     public GameObject UI;
     public GameObject Player;
+    public TMP_Text ScoreLabel;
+
     public float ObstacleSpeed;
     public float ObstacleSpeedGain;
 
@@ -15,6 +18,8 @@ public class WallGenerator : MonoBehaviour
 
     private GameObject activeWall = null;
     private BoxMovement activeScript = null;
+    private int currentScore = 0;
+    private int highestScore = 0;
 
     void Start()
     {
@@ -37,11 +42,15 @@ public class WallGenerator : MonoBehaviour
         {
             if (activeScript.HasCollided())
             {
+                ScoreLabel.SetText(" " + highestScore.ToString());
+                currentScore = 0;
                 UI.SetActive(true);
                 activeWall = null;
             }
             else 
             {
+                currentScore++;
+                highestScore = currentScore > highestScore ? currentScore : highestScore;
                 activeWall = null;
                 SpawnRandomWall();
             }
