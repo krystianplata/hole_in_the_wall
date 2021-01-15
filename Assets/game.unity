@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cff774a4fbfb0448b776f2d061b944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPoint: {x: 0, y: 1.5, z: 10}
-  SpawnRotation: {x: -90, y: 0, z: -90}
+  SpawnPoint: {x: 0, y: 0, z: 10}
+  SpawnRotation: {x: 0, y: 0, z: 0}
   UI: {fileID: 2085037329}
   Player: {fileID: 907292807}
   ScoreLabel: {fileID: 1605876749}
